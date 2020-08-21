@@ -4,33 +4,8 @@ const mongoose = require('mongoose');
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-const Schema = mongoose.Schema;
+const Register = require('./Register')
 const port = 3000 || process.env.port;
-// Database Schema
-const Register = new Schema({
-name:{
-    type:String,
-    required:true,
-
-},
-email:{
-    type:String,
-    required:true,
-    unique:true  
-}
-,password:{
-    type:String,
-    required:true
-},
-address:{
-    type:String,
-    required:true 
-},
-district:{
-    type:String,
-    required:true   
-}
-});
 // Database Model
 const RU = mongoose.model('user', Register);
 // Route
@@ -38,15 +13,16 @@ const RU = mongoose.model('user', Register);
 // Post
 app.post('/Register',async(req,res)=>{
   const {email,name,password,address,district} = req.body;
-try{
   const Register =await new RU({email,name,password,address,district});
-  res.status(201).json(Register)
-  Register.save();
-}
-catch(err){
-console.log(err);
+  Register.save((err)=>{
+    if(err){
+      console.log(err);
 res.status(400).send('Ops!')
-}
+    }
+    else{
+      res.status(201).json(Register)
+    }
+  });
 })
 // Listening
 app.listen(port,async() => {
