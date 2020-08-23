@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // Route
 // Get
 // Post
-app.post("/Register", (req, res) => {
+app.post("/Register", async(req, res) => {
   const { email, name, password, address, district } = req.body;
   bcrypt.hash(password, saltRounds, function (err, hash) {
     if (err) {
@@ -29,14 +29,7 @@ app.post("/Register", (req, res) => {
       Register.save((err) => {
         if (err) {
           res.redirect('/Register')
-        } else {
-          res.status(201).json(Register);
-        }
-      });
-    }
-  });
-});
-
+        } else {res.status(201).json(Register);}});}});});
 // Listening
 app.listen(port, async () => {
   try {
