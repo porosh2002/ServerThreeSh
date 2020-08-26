@@ -13,7 +13,24 @@ app.use(bodyParser.json());
 // Route
 // Get
 // Post
-app.post("/Register", async(req, res) => {
+// Login
+app.post('/Login',(req,res)=>{
+  const { email,password} = req.body; 
+  RU.findOne({ email:email}, function (err, noerr){
+    if(err){
+      console.log(err);
+    }
+    if(noerr){
+      bcrypt.compare(password, noerr.password, function(err, result) {
+        if(result===true){
+          console.log(noerr);
+        }
+    });
+    }
+  });
+})
+// Register
+app.post("/Register",(req, res) => {
   const { email, name, password, address, district } = req.body;
   bcrypt.hash(password, saltRounds, function (err, hash) {
     if (err) {
