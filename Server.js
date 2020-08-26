@@ -21,7 +21,7 @@ app.post('/Login',(req,res)=>{
       console.log(err);
     }
     if(noerr){
-      bcrypt.compare(password, noerr.password, function(err, result) {
+      bcrypt.compare(password, noerr.password, function(error, result) {
         if(result===true){
           console.log(noerr);
         }
