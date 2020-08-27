@@ -5,7 +5,7 @@ const app = express();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const Register = require("./Register");
-const port = 3000 || process.env.port;
+const port = 5000 || process.env.port;
 const RU = mongoose.model("user", Register);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -46,7 +46,8 @@ app.post("/Register",(req, res) => {
       Register.save((err) => {
         if (err) {
           res.redirect('/Register')
-        } else {res.status(201).json(Register);}});}});});
+        } else {res.status(201).json(Register);}});}});
+});
 // Listening
 app.listen(port, async () => {
   try {

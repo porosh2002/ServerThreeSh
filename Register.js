@@ -23,6 +23,9 @@ const Register = new Schema({
     district:{
         type:String,
         required:true, 
+    },
+    referral:{
+        type:String,
     }
     });
     module.exports = Register
