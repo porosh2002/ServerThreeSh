@@ -1,32 +1,33 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // Database Schema
-const Register = new Schema({
+const Product = new Schema({
     name:{
         type:String,
         required:true,
     },
-    email:{
-        type:String,
+    price:{
+        type:Number,
         required:true,
-        unique:true,
     }
-    ,password:{
-        type:String,
-        required:true,
-        minlength:6,
-    },
-    address:{
+    ,description:{
         type:String,
         required:true,
     },
-    district:{
+    tags:{
         type:String,
         required:true,
     },
-    refferal:{
+    size:{
         type:String,
-        minlength:6,
+        required:true,
+    },
+    offer:{
+        type:Number,
+        required:true
+    },
+    image:{
+        type:[file],
     }
     });
-    module.exports = Register
+    module.exports = Product
