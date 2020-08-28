@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // Database Schema
 const Product = new Schema({
-    name:{
+    iteam:{
         type:String,
         required:true,
     },
@@ -22,12 +22,16 @@ const Product = new Schema({
         type:String,
         required:true,
     },
+    BrandName:{
+        type:String,
+        required:true,
+    },
     offer:{
         type:Number,
         required:true
     },
-    image:{
-        type:[file],
-    }
+    // image:{
+    //     type:[file],
+    // }
     });
     module.exports = Product
