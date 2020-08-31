@@ -10,6 +10,17 @@ const Product = require("./Product");
 const port = 5000 || process.env.port;
 const RU = mongoose.model("users", Register);
 const RP = mongoose.model("product", Product);
+const multer  = require('multer')
+const avatar = multer({
+    limits:{
+        fileSize:1000000,
+    },
+    fileFilter(req,file,cb){
+        if(!file.originalname.match(/\.(jpg|png|JPG|PNG|JPEG|jpeg)$/))
+        return cb(new Error('This is not a correct format of the file'))
+        cb(undefined,true)
+    }
+})
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -18,16 +29,20 @@ app.use(bodyParser.json());
 // Get
 // Post
 // Add Product
-app.post("/ProductADD", (req, res) => {
-  const { iteam, price, description, tags, size, offer,BrandName } = req.body;
+app.post("/ProductADD",avatar.single('upload'),(req, res) => {
+  const {
+    iteam, price, description, tags, size, offer,BrandName} = req.body;
+  const image1 = req.file.buffer
+  console.log(image1);
   const Product = new RP({
-    iteam,
-    price,
-    description,
-    tags,
-    size,
-    offer,
-    BrandName
+    // iteam,
+    // price,
+    // description,
+    // tags,
+    // size,
+    // offer,
+    // BrandName,
+    image1
   });
   Product.save((err) => {
     if (err) {
