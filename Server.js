@@ -29,20 +29,24 @@ app.use(bodyParser.json());
 // Get
 // Post
 // Add Product
-app.post("/ProductADD",avatar.single('upload'),(req, res) => {
+app.post("/ProductADD",avatar.array('upload',3),(req, res) => {
   const {
     iteam, price, description, tags, size, offer,BrandName} = req.body;
-  const image1 = req.file.buffer
-  console.log(image1);
+   const image1 = req.files[0];
+   const image2 = req.files[1];
+   const image3 = req.files[2];
+   console.log(upload);
   const Product = new RP({
-    // iteam,
-    // price,
-    // description,
-    // tags,
-    // size,
-    // offer,
-    // BrandName,
-    image1
+    iteam,
+    price,
+    description,
+    tags,
+    size,
+    offer,
+    BrandName,
+    image1,
+    image2,
+    image3
   });
   Product.save((err) => {
     if (err) {
