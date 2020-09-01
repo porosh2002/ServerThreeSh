@@ -29,13 +29,8 @@ app.use(bodyParser.json());
 // Get
 // Post
 // Add Product
-app.post("/ProductADD",avatar.array('upload',3),(req, res) => {
-  const {
-    iteam, price, description, tags, size, offer,BrandName} = req.body;
-   const image1 = req.files[0];
-   const image2 = req.files[1];
-   const image3 = req.files[2];
-   console.log(upload);
+app.post("/ProductADD",(req,res)=>{
+  const {iteam, price, description, tags, size, offer,BrandName,imageID} = req.body;
   const Product = new RP({
     iteam,
     price,
@@ -44,9 +39,7 @@ app.post("/ProductADD",avatar.array('upload',3),(req, res) => {
     size,
     offer,
     BrandName,
-    image1,
-    image2,
-    image3
+    imageID,
   });
   Product.save((err) => {
     if (err) {
@@ -55,6 +48,12 @@ app.post("/ProductADD",avatar.array('upload',3),(req, res) => {
       res.status(201).json(Product);
     }
   });
+})
+app.post("/ProductPIC",avatar.array('upload',3),(req, res) => {
+   const image1 = req.files[0];
+   const image2 = req.files[1];
+   const image3 = req.files[2];
+   console.log(req.files,req.body.upload);
 });
 // Login
 app.post("/Login", (req, res) => {

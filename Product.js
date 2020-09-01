@@ -30,16 +30,8 @@ const Product = new Schema({
         type:Number,
         required:true
     },
-    image1:{
-        type:Buffer,
-        required:true
-    },
-    image2:{
-        type:Buffer,
-        required:true
-    },
-    image3:{
-        type:Buffer,
+    imageID:{
+        type:String,
         required:true
     }
     });
