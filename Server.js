@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 // Route
 // Get
 app.get("/AllProduct",(req, res)=>{
-  RP.find({}, function(err, result) {
+  RP.find({},function(err, result) {
     if (err) {
       console.log(err);
     } else {
