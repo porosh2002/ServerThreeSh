@@ -38,6 +38,15 @@ app.use(bodyParser.json());
 // Database Model
 // Route
 // Get
+app.get("/AllProduct",(req, res)=>{
+  RP.find({}, function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
 // Post
 // Add Product
 app.post("/ProductADD",(req,res)=>{
