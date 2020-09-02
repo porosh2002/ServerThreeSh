@@ -6,10 +6,13 @@ const app = express();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const Register = require("./Register");
+const Schema = mongoose.Schema;
 const Product = require("./Product");
+const imageCollect = require('./imageCollect')
 const port = 5000 || process.env.port;
 const RU = mongoose.model("users", Register);
 const RP = mongoose.model("product", Product);
+const IC = mongoose.model("imageCollect", imageCollect);
 const multer  = require('multer')
 const avatar = multer({
     limits:{
@@ -21,6 +24,14 @@ const avatar = multer({
         cb(undefined,true)
     }
 })
+const AddBrand = new mongoose.Schema({
+  Brand:{
+    type:String,
+    required:true,
+    unique:true
+  }
+})
+const BA = mongoose.model("Brand", AddBrand );
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -50,11 +61,37 @@ app.post("/ProductADD",(req,res)=>{
   });
 })
 app.post("/ProductPIC",avatar.array('upload',3),(req, res) => {
-   const image1 = req.files[0];
-   const image2 = req.files[1];
-   const image3 = req.files[2];
-   console.log(req.files,req.body.upload);
+   const image1 = req.files[0].buffer;
+   const image2 = req.files[1].buffer;
+   const image3 = req.files[2].buffer;
+   const imageID = req.body.upload;
+   const imageCollect = new IC({
+     image1,
+     image2,
+     image3,
+     imageID
+   });
+  imageCollect.save((err) => {
+     if (err) {
+       console.log(err);
+     } else {
+       res.status(201).json(Product);
+     }
+   });
 });
+app.post('/AddBrand',(req,res)=>{
+  const {Brand} = req.body
+  const BrandADD = new BA({
+    Brand
+  });
+ BrandADD.save((err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(201).json(Product);
+    }
+});
+})
 // Login
 app.post("/Login", (req, res) => {
   const { email, password } = req.body;
