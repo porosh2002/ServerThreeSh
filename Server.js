@@ -53,7 +53,7 @@ app.get("/geTiMagE/:id",(req,res)=>{
 app.get("/AllProduct",(req, res)=>{
   RP.find({},function(err, result) {
     if (err) {
-      console.log(err);
+      console.log(err,'err in fething product');
     } else {
       res.json(result);
     }
