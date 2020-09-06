@@ -44,7 +44,8 @@ app.get("/geTiMagE/:id",(req,res)=>{
     if (err) {
       console.log(err);
     } else {
-      res.json(result);
+      res.set('Content-Type','image/jpeg')
+      res.send(result[0].image1);
     }
   });
 })
