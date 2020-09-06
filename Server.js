@@ -38,6 +38,11 @@ app.use(bodyParser.json());
 // Database Model
 // Route
 // Get
+
+app.get("/geTiMagE/:id",(req,res)=>{
+  console.log(req.params);
+})
+
 app.get("/AllProduct",(req, res)=>{
   RP.find({},function(err, result) {
     if (err) {
