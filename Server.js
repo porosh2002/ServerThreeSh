@@ -40,7 +40,13 @@ app.use(bodyParser.json());
 // Get
 
 app.get("/geTiMagE/:id",(req,res)=>{
-  console.log(req.params);
+  IC.find({imageID:req.params.id},function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
 })
 
 app.get("/AllProduct",(req, res)=>{
