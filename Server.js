@@ -49,6 +49,16 @@ app.get("/geTiMagE/:id",(req,res)=>{
     }
   });
 })
+app.get("/geTiMagE2/:id",(req,res)=>{
+  IC.find({imageID:req.params.id},function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.set('Content-Type','image/jpeg')
+      res.send(result[0].image1,result[0].image2,result[0].image3);
+    }
+  });
+})
 
 app.get("/AllProduct",(req, res)=>{
   RP.find({},function(err, result) {
