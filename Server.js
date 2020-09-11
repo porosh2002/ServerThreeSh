@@ -59,6 +59,15 @@ app.get("/AllProduct",(req, res)=>{
     }
   });
 });
+app.get("/Product/:id",(req, res)=>{
+  RP.find({_id:req.params.id},function(err, result) {
+    if (err) {
+      console.log(err,'err in fething product');
+    } else {
+      res.json(result);
+    }
+  });
+});
 // Post
 // Add Product
 app.post("/ProductADD",(req,res)=>{
