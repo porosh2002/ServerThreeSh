@@ -55,7 +55,27 @@ app.get("/geTiMagE2/:id",(req,res)=>{
       console.log(err);
     } else {
       res.set('Content-Type','image/jpeg')
-      res.send(result[0].image1,result[0].image2,result[0].image3);
+      res.send(result[0].image1);
+    }
+  });
+})
+app.get("/geTiMagE3/:id",(req,res)=>{
+  IC.find({imageID:req.params.id},function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.set('Content-Type','image/jpeg')
+      res.send(result[0].image2);
+    }
+  });
+})
+app.get("/geTiMagE4/:id",(req,res)=>{
+  IC.find({imageID:req.params.id},function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.set('Content-Type','image/jpeg')
+      res.send(result[0].image3);
     }
   });
 })
