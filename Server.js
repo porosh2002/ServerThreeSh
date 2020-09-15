@@ -38,6 +38,14 @@ app.use(bodyParser.json());
 // Database Model
 // Route
 // Get
+app.get("/getuserdata/:id",(req,res)=>{
+  RU.find({_id:req.params.id},function(err, result) {
+    if (err) {
+    } else {
+      res.send(result);
+    }
+  });
+})
 
 app.get("/geTiMagE/:id",(req,res)=>{
   IC.find({imageID:req.params.id},function(err, result) {
@@ -99,6 +107,12 @@ app.get("/Product/:id",(req, res)=>{
   });
 });
 // Post
+app.post('/delete/:id',(req,res)=>{
+  RU.deleteOne({ _id: req.params.id }, function (err) {
+    if(err) console.log(err);
+    console.log("Successful deletion");
+  });
+})
 // Add Product
 app.post("/ProductADD",(req,res)=>{
   const {iteam, price, description, tags, size, offer,BrandName,imageID} = req.body;
