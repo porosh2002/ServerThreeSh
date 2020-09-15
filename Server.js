@@ -121,15 +121,28 @@ app.post('/delete/:id',(req,res)=>{
 app.post('/update/:id',(req,res)=>{
   const{name,email} = req.body;
   console.log(name);
-//   RU.updateOne({ _id: req.params.id},  
-//     {name,email}, function (err, docs) { 
-//     if (err){ 
-//         console.log(err) 
-//     } 
-//     else{ 
-//         console.log("Updated Docs : ", docs); 
-//     } 
-// }); 
+  RU.updateOne({ _id: req.params.id},  
+    {name,email}, function (err, docs) { 
+    if (err){ 
+        console.log(err) 
+    } 
+    else{ 
+         
+    } 
+}); 
+})
+app.post('/updateEarn/:id',(req,res)=>{
+  const{earn} = req.body;
+  console.log(name);
+  RU.updateOne({ _id: req.params.id},  
+    {earn}, function (err, docs) { 
+    if (err){ 
+        console.log(err) 
+    } 
+    else{ 
+         
+    } 
+}); 
 })
 // Add Product
 app.post("/ProductADD",(req,res)=>{
