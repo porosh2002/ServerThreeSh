@@ -171,6 +171,7 @@ app.post("/Login", (req, res) => {
 // Register
 app.post("/Register", (req, res) => {
   const { email, name, password, address, district, refferal } = req.body;
+  const earn = 0;
   bcrypt.hash(password, saltRounds, function (err, hash) {
     if (err) {
       res.redirect("/Register");
@@ -182,6 +183,7 @@ app.post("/Register", (req, res) => {
         address,
         district,
         refferal,
+        earn
       });
       Register.save((err) => {
         if (err) {
