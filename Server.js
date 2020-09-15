@@ -133,7 +133,6 @@ app.post('/update/:id',(req,res)=>{
 })
 app.post('/updateEarn/:id',(req,res)=>{
   const{earn} = req.body;
-  console.log(name);
   RU.updateOne({ _id: req.params.id},  
     {earn}, function (err, docs) { 
     if (err){ 
