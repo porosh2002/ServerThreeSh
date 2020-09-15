@@ -106,12 +106,30 @@ app.get("/Product/:id",(req, res)=>{
     }
   });
 });
+app.get("/Login",(req, res)=>{
+res.redirect("/Login")
+});
+app.get("/Register",(req, res)=>{
+res.redirect("/Register")
+});
 // Post
 app.post('/delete/:id',(req,res)=>{
   RU.deleteOne({ _id: req.params.id }, function (err) {
     if(err) console.log(err);
-    console.log("Successful deletion");
   });
+})
+app.post('/update/:id',(req,res)=>{
+  const{name,email} = req.body;
+  console.log(name);
+//   RU.updateOne({ _id: req.params.id},  
+//     {name,email}, function (err, docs) { 
+//     if (err){ 
+//         console.log(err) 
+//     } 
+//     else{ 
+//         console.log("Updated Docs : ", docs); 
+//     } 
+// }); 
 })
 // Add Product
 app.post("/ProductADD",(req,res)=>{
