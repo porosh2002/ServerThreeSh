@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const bcrypt = require("bcrypt");
+const path = require('path');
 const saltRounds = 10;
 const Register = require("./Register");
 const Schema = mongoose.Schema;
@@ -38,6 +39,9 @@ app.use(bodyParser.json());
 // Database Model
 // Route
 // Get
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 app.get("/getuserdata/:id",(req,res)=>{
   RU.find({_id:req.params.id},function(err, result) {
     if (err) {
