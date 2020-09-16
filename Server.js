@@ -214,7 +214,7 @@ app.post("/Login", (req, res) => {
 });
 // Register
 app.post("/Register", (req, res) => {
-  const { email, name, password, address, district, refferal } = req.body;
+  const { email, name, password, refferal } = req.body;
   const earn = 0;
   bcrypt.hash(password, saltRounds, function (err, hash) {
     if (err) {
@@ -224,8 +224,6 @@ app.post("/Register", (req, res) => {
         email,
         name,
         password: hash,
-        address,
-        district,
         refferal,
         earn
       });
