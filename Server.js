@@ -14,7 +14,7 @@ const port = 5000 || process.env.port;
 const RU = mongoose.model("users", Register);
 const RP = mongoose.model("product", Product);
 const IC = mongoose.model("imageCollect", imageCollect);
-const multer  = require('multer')
+const multer  = require('multer');
 const avatar = multer({
     limits:{
         fileSize:1000000,
@@ -39,9 +39,9 @@ app.use(bodyParser.json());
 // Database Model
 // Route
 // Get
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 app.get("/getuserdata/:id",(req,res)=>{
   RU.find({_id:req.params.id},function(err, result) {
     if (err) {
@@ -210,7 +210,10 @@ app.post("/Login", (req, res) => {
     if (noerr) {
       bcrypt.compare(password, noerr.password, function (error, result) {
         if (result === true) {
-          console.log(noerr);
+          res.json(noerr._id)
+        }
+        if(error){
+          console.log(error);
         }
       });
     }
@@ -231,13 +234,7 @@ app.post("/Register", (req, res) => {
         refferal,
         earn
       });
-      Register.save((err) => {
-        if (err) {
-          res.redirect("/Register");
-        } else {
-          res.status(201).json(Register);
-        }
-      });
+      Register.save();
     }
   });
 });
