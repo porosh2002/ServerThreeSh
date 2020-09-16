@@ -191,19 +191,19 @@ app.post("/ProductPIC",avatar.array('upload',3),(req, res) => {
      }
    });
 });
-app.post('/AddBrand',(req,res)=>{
-  const {Brand} = req.body
-  const BrandADD = new BA({
-    Brand
-  });
- BrandADD.save((err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.status(201).json(Product);
-    }
-});
-})
+// app.post('/AddBrand',(req,res)=>{
+//   const {Brand} = req.body
+//   const BrandADD = new BA({
+//     Brand
+//   });
+//  BrandADD.save((err) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.status(201).json(Product);
+//     }
+// });
+// })
 // Login
 app.post("/Login", (req, res) => {
   const { email, password } = req.body;
