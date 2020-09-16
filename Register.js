@@ -20,6 +20,10 @@ const Register = new Schema({
         type:String,
         minlength:6,
     },
+    ownrefferal:{
+        type:String,
+        minlength:6,
+    },
     earn:{
         type:Number,
     }

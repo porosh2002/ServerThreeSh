@@ -15,6 +15,7 @@ const RU = mongoose.model("users", Register);
 const RP = mongoose.model("product", Product);
 const IC = mongoose.model("imageCollect", imageCollect);
 const multer  = require('multer');
+const shortid = require('shortid');
 const avatar = multer({
     limits:{
         fileSize:1000000,
@@ -223,6 +224,7 @@ app.post("/Login", (req, res) => {
 app.post("/Register", (req, res) => {
   const { email, name, password, refferal } = req.body;
   const earn = 0;
+  const ownrefferal = shortid.generate();
   bcrypt.hash(password, saltRounds, function (err, hash) {
     if (err) {
       res.redirect("/Register");
@@ -232,6 +234,7 @@ app.post("/Register", (req, res) => {
         name,
         password: hash,
         refferal,
+        ownrefferal,
         earn
       });
       Register.save();
