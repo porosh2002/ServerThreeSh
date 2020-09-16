@@ -116,11 +116,10 @@ app.get("/refferF/:id",(req, res)=>{
     if (err) {
       console.log(err,'err in fething product');
     } else {
-      res.send(result[0].refferal);
+      res.json(result)
     }
   });
 });
-
 // Post
 app.post('/delete/:id',(req,res)=>{
   RU.deleteOne({ _id: req.params.id }, function (err) {
