@@ -163,11 +163,12 @@ app.post('/updateEarn/:id',(req,res)=>{
 })
 // Add Product
 app.post("/ProductADD",(req,res)=>{
-  const {iteam, price, description, tags, size, offer,BrandName,imageID} = req.body;
+  const {iteam, price, description,vendor, tags, size, offer,BrandName,imageID} = req.body;
   const Product = new RP({
     iteam,
     price,
     description,
+    vendor,
     tags,
     size,
     offer,
