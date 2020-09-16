@@ -9,9 +9,11 @@ const saltRounds = 10;
 const Register = require("./Register");
 const Schema = mongoose.Schema;
 const Product = require("./Product");
+const vendor = require('./vendor')
 const imageCollect = require('./imagecollect')
 const port = 5000 || process.env.port;
 const RU = mongoose.model("users", Register);
+const RV = mongoose.model("Vendors", vendor);
 const RP = mongoose.model("product", Product);
 const IC = mongoose.model("imageCollect", imageCollect);
 const multer  = require('multer');
@@ -243,6 +245,17 @@ app.post("/Register", (req, res) => {
       Register.save();
     }
   });
+});
+app.post("/Join", (req, res) => {
+  const { email, name, password, Address,number} = req.body;
+  const vendor = new RV({
+    email,
+    name,
+    password,
+    Address,
+    number
+  });
+  vendor.save();
 });
 // Listening
 app.listen(port, async () => {

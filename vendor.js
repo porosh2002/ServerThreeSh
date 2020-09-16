@@ -16,16 +16,12 @@ const Vendor = new Schema({
         required:true,
         minlength:6,
     },
-    refferal:{
+    Address:{
         type:String,
         minlength:6,
     },
-    ownrefferal:{
-        type:String,
-        minlength:6,
-    },
-    earn:{
+    Number:{
         type:Number,
     }
     });
-    module.exports = Vendor
+module.exports = Vendor
