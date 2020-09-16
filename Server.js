@@ -116,16 +116,11 @@ app.get("/refferF/:id",(req, res)=>{
     if (err) {
       console.log(err,'err in fething product');
     } else {
-      res.json(result);
+      res.send(result[0].refferal);
     }
   });
 });
-app.get("/Login",(req, res)=>{
-res.redirect("/Login")
-});
-app.get("/Register",(req, res)=>{
-res.redirect("/Register")
-});
+
 // Post
 app.post('/delete/:id',(req,res)=>{
   RU.deleteOne({ _id: req.params.id }, function (err) {
