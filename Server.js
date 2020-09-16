@@ -111,6 +111,15 @@ app.get("/Product/:id",(req, res)=>{
     }
   });
 });
+app.get("/refferF/:id",(req, res)=>{
+  RU.find({_id:req.params.id},function(err, result) {
+    if (err) {
+      console.log(err,'err in fething product');
+    } else {
+      res.json(result);
+    }
+  });
+});
 app.get("/Login",(req, res)=>{
 res.redirect("/Login")
 });
