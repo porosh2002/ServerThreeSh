@@ -54,10 +54,10 @@ app.get("/getuserdata/:id",(req,res)=>{
   });
 })
 app.get("/getvendordata/:id",(req,res)=>{
-  RU.find({_id:req.params.id},function(err, result) {
+  RV.find({_id:req.params.id},function(err, result) {
     if (err) {
     } else {
-      res.send(result);
+      res.json(result);
     }
   });
 })
@@ -272,7 +272,7 @@ app.post("/CheckVendor", (req, res) => {
       console.log(err);
     }
     if (noerr){
-      res.send(noerr)
+      res.json(noerr)
     }
   });
 });
