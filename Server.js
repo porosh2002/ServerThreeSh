@@ -53,6 +53,14 @@ app.get("/getuserdata/:id",(req,res)=>{
     }
   });
 })
+app.get("/getvendordata/:id",(req,res)=>{
+  RU.find({_id:req.params.id},function(err, result) {
+    if (err) {
+    } else {
+      res.send(result);
+    }
+  });
+})
 
 app.get("/geTiMagE/:id",(req,res)=>{
   IC.find({imageID:req.params.id},function(err, result) {
@@ -256,6 +264,17 @@ app.post("/Join", (req, res) => {
     number
   });
   vendor.save();
+});
+app.post("/CheckVendor", (req, res) => {
+  const { email, password } = req.body;
+  RV.findOne({ email,password}, function (err, noerr) {
+    if (err) {
+      console.log(err);
+    }
+    if (noerr){
+      res.send(noerr)
+    }
+  });
 });
 // Listening
 app.listen(port, async () => {
