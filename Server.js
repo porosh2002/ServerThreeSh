@@ -223,7 +223,20 @@ app.post("/ref/:id/:price", (req, res) => {
             { earn: updateEarn },
             function (err, done1) {
               if (done1) {
-
+                RU.find({ownrefferal:ref1data[0].refferal},function(err,data2nd){
+                   if(data2nd){
+                    const earnValue2 = data2nd[0].earn;
+                    const updateEarn2 = earnValue2 + price5;
+                    RU.updateOne({_id:data2nd[0]._id},{earn:updateEarn2},function(err,success){
+                      if(err){
+                        console.log(err);
+                      }
+                      if(success){
+                        res.json(':)');
+                      }
+                    })
+                   }
+                })
               }
             }
           );
