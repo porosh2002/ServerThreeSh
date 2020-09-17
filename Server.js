@@ -223,7 +223,7 @@ app.post("/ref/:id/:price", (req, res) => {
             { earn: updateEarn },
             function (err, done1) {
               if (done1) {
-                res.json(ref1data);
+
               }
             }
           );
