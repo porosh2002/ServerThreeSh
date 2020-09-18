@@ -155,6 +155,14 @@ app.post("/updateEarn/:id", (req, res) => {
     }
   });
 });
+
+
+app.get("/vendorpostaccess",(req,res)=>{
+
+})
+
+
+
 // Add Product
 app.post("/ProductADD", (req, res) => {
   const {
@@ -287,11 +295,13 @@ app.post("/Register", (req, res) => {
 });
 app.post("/Join", (req, res) => {
   const { email, name, password, Address, number } = req.body;
+  const access = false
   const vendor = new RV({
     email,
     name,
     password,
     Address,
+    access,
     number,
   });
   vendor.save();
