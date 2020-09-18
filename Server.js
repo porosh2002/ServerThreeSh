@@ -341,7 +341,7 @@ app.post("/CheckVendor", (req, res) => {
 // Listening
 app.listen(port, async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/error", {
+    await mongoose.connect("mongodb://139.59.75.190:27017/error", {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
