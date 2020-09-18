@@ -18,13 +18,24 @@ const RP = mongoose.model("product", Product);
 const IC = mongoose.model("imageCollect", imageCollect);
 const multer = require("multer");
 const shortid = require("shortid");
+const imageCollectNID = new Schema({
+  image1:{
+    type:Buffer,
+    required:true,
+  },
+  imageID:{
+    type:String,
+    required:true,
+  },
+});
+const ICN = mongoose.model("imageNID", imageCollectNID);
 const avatar = multer({
   limits: {
     fileSize: 1000000,
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|png|JPG|PNG|JPEG|jpeg)$/))
-      return cb(new Error("This is not a correct format of the file"));
+    return cb(new Error("This is not a correct format of the file"));
     cb(undefined, true);
   },
 });
@@ -45,6 +56,21 @@ app.use(bodyParser.json());
 // app.get('/*', function(req, res) {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 // });
+
+
+app.post("/ProductPICNID", avatar.single("upload"), (req, res) => {
+  const image1 = req.file.buffer;
+  const imageID = req.body.upload;
+  const imageCollectNID = new ICN({
+    image1,
+    imageID,
+  });
+  imageCollectNID.save();
+  res.end();
+});
+
+
+
 app.get("/getuserdata/:id", (req, res) => {
   RU.find({ _id: req.params.id }, function (err, result) {
     if (err) {
@@ -155,11 +181,6 @@ app.post("/updateEarn/:id", (req, res) => {
     }
   });
 });
-
-
-app.get("/vendorpostaccess",(req,res)=>{
-
-})
 
 
 
