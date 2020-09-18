@@ -1,4 +1,5 @@
 const express = require("express");
+require('dotenv').config()
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -341,7 +342,7 @@ app.post("/CheckVendor", (req, res) => {
 // Listening
 app.listen(port, async () => {
   try {
-    await mongoose.connect("mongodb://139.59.75.190:27017/error", {
+    await mongoose.connect("mongodb://127.0.0.1:27017/error", {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
