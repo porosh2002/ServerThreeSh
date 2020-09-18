@@ -54,10 +54,10 @@ app.use(bodyParser.json());
 // Database Model
 // Route
 // Get
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.use(express.static(path.join(__dirname, 'build')));
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 
 app.post("/ProductPICNID", avatar.single("upload"), (req, res) => {
@@ -343,7 +343,7 @@ app.post("/CheckVendor", (req, res) => {
 // Listening
 app.listen(port, async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/error", {
+    await mongoose.connect("mongodb+srv://demo:vuwV6K7Y2dMLX9U@cluster0.wbmpc.mongodb.net/test?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
