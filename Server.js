@@ -59,10 +59,26 @@ app.get('/', function(req, res) {
 // Database Model
 // Route
 // Get
-app.post("/deleteProduct/:id",(req,res)=>{
-  RP.deleteOne({_id:req.params.id},(err,res2)=>{
+app.post("/deleteProduct/:id",(req,res1)=>{
+  let imageID = null ;
+  RP.findOne({_id:req.params.id},(err,res2)=>{
     if(res2){
-      res.end()
+      imageID = res2.imageID
+      RP.deleteOne({_id:req.params.id},(err,success)=>{
+        if(success){
+          IC.deleteOne({imageID:imageID},(err,res)=>{
+            if(res){
+              res1.end()
+            }
+            if(err){
+              console.log(err);
+            }
+          })
+        }
+        if(err){
+          console.log(err);
+        }
+      })
     }
     if(err){
       console.log(err);
