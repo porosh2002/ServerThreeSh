@@ -174,9 +174,10 @@ app.post("/DeleteV/:email/:id", (req, res) => {
   })
 });
 
-app.post("/ProductPICNID", avatar.single("upload"), (req, res) => {
+app.post("/ProductPICNID/:id", avatar.single("upload"), (req, res) => {
   const image1 = req.file.buffer;
-  const imageID = req.body.upload;
+  const imageID = req.params.id;
+  console.log(imageID);
   const imageCollectNID = new ICN({
     image1,
     imageID,
