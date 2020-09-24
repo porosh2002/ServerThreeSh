@@ -114,25 +114,6 @@ app.post("/ProductEdit/:id", (req, res) => {
       res.send(data)
     }
   })
-
-  // const Product = new RP({
-  //   iteam,
-  //   price,
-  //   description,
-  //   vendor,
-  //   tags,
-  //   size,
-  //   offer,
-  //   BrandName,
-  //   imageID,
-  // });
-  // Product.save((err) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     res.status(201).json(Product);
-  //   }
-  // });
 });
 
 
