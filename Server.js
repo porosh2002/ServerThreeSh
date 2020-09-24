@@ -153,6 +153,26 @@ app.post("/ProductEditV/:email/:id", (req, res) => {
     }
   })
 });
+app.post("/DeleteV/:email/:id", (req, res) => {
+  RP.findOne({_id:req.params.id},(err,response)=>{
+    if(err){
+      console.log(err);
+    }
+    if(response){
+      if(req.params.email=response.vendor){
+        RP.deleteOne({_id:req.params.id},(err,ok)=>{
+            if(err){
+              console.log(err);
+            }
+            if(ok){
+              console.log(ok);
+            }
+          })
+      }
+      
+    }
+  })
+});
 
 app.post("/ProductPICNID", avatar.single("upload"), (req, res) => {
   const image1 = req.file.buffer;
