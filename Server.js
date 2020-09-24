@@ -59,6 +59,67 @@ app.get('/', function(req, res) {
 // Database Model
 // Route
 // Get
+app.post("/deleteProduct/:id",(req,res)=>{
+  RP.deleteOne({_id:req.params.id},(err,res2)=>{
+    if(res2){
+      res.end()
+    }
+    if(err){
+      console.log(err);
+    }
+  })
+})
+
+app.post("/ProductEdit/:id", (req, res) => {
+  const {
+    iteam,
+    price,
+    description,
+    vendor,
+    tags,
+    size,
+    offer,
+    BrandName,
+    imageID,
+  } = req.body;
+  RP.updateOne({imageID:req.params.id},{iteam,
+    price,
+    description,
+    vendor,
+    tags,
+    size,
+    offer,
+    BrandName,
+    imageID,},(err,data)=>{
+    if(err){
+      console.log(err);
+    }
+    if(data){
+      res.send(data)
+    }
+  })
+
+  // const Product = new RP({
+  //   iteam,
+  //   price,
+  //   description,
+  //   vendor,
+  //   tags,
+  //   size,
+  //   offer,
+  //   BrandName,
+  //   imageID,
+  // });
+  // Product.save((err) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     res.status(201).json(Product);
+  //   }
+  // });
+});
+
+
 app.post("/ProductPICNID", avatar.single("upload"), (req, res) => {
   const image1 = req.file.buffer;
   const imageID = req.body.upload;
