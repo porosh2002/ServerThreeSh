@@ -18,13 +18,18 @@ const Vendor = new Schema({
     },
     Address:{
         type:String,
-        minlength:6,
+        minlength:3,
     },
     Number:{
         type:Number,
     },
     access:{
         type:Boolean
+    },
+    number:{
+        type:Number,
+        required:true,
+        unique:true
     }
     });
 module.exports = Vendor

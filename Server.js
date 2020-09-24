@@ -47,7 +47,6 @@ const AddBrand = new mongoose.Schema({
     unique: true,
   },
 });
-const BA = mongoose.model("Brand", AddBrand);
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -59,6 +58,28 @@ app.get('/', function(req, res) {
 // Database Model
 // Route
 // Get
+app.get("/vendorApprove",(req,res1)=>{
+  RV.find({access:false},(err,res)=>{
+    if(err){
+      console.log(err);
+    }
+    if(res){
+      res1.json(res)
+    }
+  })
+})
+app.get("/geTNidiMagE/:id", (req, res) => {
+  ICN.find({}, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.set("Content-Type", "image/jpeg");
+      res.send(result[0].image1);
+    }
+  });
+});
+
+
 app.post("/deleteProduct/:id",(req,res1)=>{
   let imageID = null ;
   RP.findOne({_id:req.params.id},(err,res2)=>{
@@ -433,6 +454,7 @@ app.post("/Register", (req, res) => {
 });
 app.post("/Join", (req, res) => {
   const { email, name, password, Address, number } = req.body;
+  console.log(number);
   const access = false
   const vendor = new RV({
     email,
