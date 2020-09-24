@@ -115,7 +115,44 @@ app.post("/ProductEdit/:id", (req, res) => {
     }
   })
 });
-
+app.post("/ProductEditV/:email/:id", (req, res) => {
+  const {
+    iteam,
+    price,
+    description,
+    vendor,
+    tags,
+    size,
+    offer,
+    BrandName,
+  } = req.body;
+  RP.findOne({_id:req.params.id},(err,response)=>{
+    if(err){
+      console.log(err);
+    }
+    if(response){
+      if(req.params.email=response.vendor){
+        RP.updateOne({_id:req.params.id},{    iteam,
+          price,
+          description,
+          vendor,
+          tags,
+          size,
+          offer,
+          BrandName,
+          },(err,ok)=>{
+            if(err){
+              console.log(err);
+            }
+            if(ok){
+              console.log(ok);
+            }
+          })
+      }
+      
+    }
+  })
+});
 
 app.post("/ProductPICNID", avatar.single("upload"), (req, res) => {
   const image1 = req.file.buffer;

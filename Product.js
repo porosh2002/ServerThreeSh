@@ -36,7 +36,8 @@ const Product = new Schema({
     },
     imageID:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     }
     });
     module.exports = Product
