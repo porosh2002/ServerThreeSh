@@ -78,8 +78,16 @@ app.get("/geTNidiMagE/:id", (req, res) => {
     }
   });
 });
-
-
+app.post('/approve/:id',(req,res)=>{
+  RV.updateOne({_id:req.params.id},{access:true},(err,ok)=>{
+    if(err){
+      console.log(err);
+    }
+    if(ok){
+      console.log('updated');
+    }
+  })
+})
 app.post("/deleteProduct/:id",(req,res1)=>{
   let imageID = null ;
   RP.findOne({_id:req.params.id},(err,res2)=>{
