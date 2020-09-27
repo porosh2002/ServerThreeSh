@@ -21,8 +21,7 @@ const Register = new Schema({
         minlength:6,
     },
     ownrefferal:{
-        type:String,
-        minlength:6,
+        type:String
     },
     earn:{
         type:Number,
