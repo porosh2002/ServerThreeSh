@@ -72,6 +72,16 @@ app.get('/', function(req, res) {
 // Database Model
 // Route
 // Get
+app.get('/gethistory/:id',(req,res)=>{
+OH.find({ID:req.params.id},(err,result)=>{
+  if(result){
+    res.json(result)
+  }
+  else {
+    console.log(err);
+  }
+})
+})
 app.post('/orderHistory',(req,res)=>{
   const {history,ID} = req.body;
   const OrderHistory = new OH({
