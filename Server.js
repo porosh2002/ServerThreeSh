@@ -43,15 +43,6 @@ const imageCollectNID = new Schema({
 });
 const ICN = mongoose.model("imageNID", imageCollectNID);
 const OH = mongoose.model("OrderHistory", OrderHistory);
-app.post('/orderHistory',(req,res)=>{
-  console.log(req.body);
-  const {history,ID} = req.body;
-  const OrderHistory = new OH({
-    history,
-    ID
-  });
-  OrderHistory.save();
-})
 const avatar = multer({
   limits: {
     fileSize: 1000000,
@@ -81,6 +72,14 @@ app.get('/', function(req, res) {
 // Database Model
 // Route
 // Get
+app.post('/orderHistory',(req,res)=>{
+  const {history,ID} = req.body;
+  const OrderHistory = new OH({
+    history,
+    ID
+  });
+  OrderHistory.save();
+})
 app.get("/vendorApprove",(req,res1)=>{
   RV.find({access:false},(err,res)=>{
     if(err){
