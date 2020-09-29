@@ -30,6 +30,9 @@ const OrderHistory = new Schema({
     type:String,
     required:true,
   },
+  date:{
+    type:String
+  }
 });
 const imageCollectNID = new Schema({
   image1:{
@@ -83,10 +86,14 @@ OH.find({ID:req.params.id},(err,result)=>{
 })
 })
 app.post('/orderHistory',(req,res)=>{
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+' '+today.getDate();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   const {history,ID} = req.body;
   const OrderHistory = new OH({
     history,
-    ID
+    ID,
+    date:date + time
   });
   OrderHistory.save();
 })
