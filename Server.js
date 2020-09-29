@@ -413,7 +413,6 @@ app.post("/ref/:id/:price", (req, res) => {
     }
     if (data && data[0].refferal !== '000000') {
   RU.find({ ownrefferal: data[0].refferal }, function (err, ref1data) {
-    res.json(ref1data)
     if (ref1data.length>0) {
       const earnValue = ref1data[0].earn;
       const updateEarn = earnValue + price7;
